@@ -1,0 +1,31 @@
+# Production stack of the API. GitHub Actions copies it to /opt/nova-api on every
+# deploy; it is not edited by hand on the server.
+#
+# It never builds: the image is compiled once in CI and published to GHCR.
+# The real .env lives only on the server (/opt/nova-api/.env).
+#
+# No database migrations run here: the API has no persistence code yet. PostgreSQL
+# is the shared `atm-postgres` container, reachable through the external network
+# `atm-network`; in DATABASE_URL the host is the container name, not localhost.
+
+networks:
+  shared:
+    name: atm-network
+    external: true
+
+services:
+  app:
+    image: ghcr.io/atmosferasoltec/atm-nova-api:${IMAGE_TAG:-latest}
+    container_name: nova-api
+    env_file: .env
+    environment:
+      HOST: 0.0.0.0
+      GIN_MODE: release
+    # Loopback only: the host's nginx publishes it as nova-api.atmosferast.com.
+    ports:
+      - "127.0.0.1:3101:3002"
+    networks:
+      - shared
+    restart: unless-stopped
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 128m

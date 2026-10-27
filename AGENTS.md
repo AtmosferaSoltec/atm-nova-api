@@ -6,12 +6,14 @@ These instructions apply throughout this repository.
 
 - This is an intentionally empty, local-only Go + Gin scaffold.
 - Keep only the server entry point and the files needed to build and document it.
-- Do not add endpoints, health checks, authentication, databases, migrations,
-  business behavior, integrations, containers, or deployment workflows until
-  explicitly requested.
+- Do not add endpoints, health checks, authentication, migrations, business
+  behavior, or integrations until explicitly requested. The container image and
+  the production deployment workflow exist because they were explicitly requested;
+  keep them as the only deployment mechanism.
 - The sibling `atm-nova-web` project remains an independent React prototype.
   Do not connect it to this API during the mockup phase.
-- Do not deploy or push changes to a remote unless the user requests it.
+- Do not deploy or push changes to a remote unless the user requests it. The
+  `production` branch triggers the production deployment workflow.
 
 ## Conventions
 

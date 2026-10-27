@@ -22,6 +22,8 @@ The server listens only on `127.0.0.1:3002`. To use another local port:
 PORT=3003 go run ./cmd/api
 ```
 
+The container image sets `HOST=0.0.0.0` so Docker can publish the port; the host nginx is the only public entry point.
+
 No `.env` file or database is required. Stop the process with Ctrl+C.
 
 ## Checks
@@ -53,9 +55,13 @@ dentistry, psychology, veterinary medicine, and medicine; dentistry comes first.
 SSH remote: `git@github.com:AtmosferaSoltec/atm-nova-api.git`.
 
 Development and execution remain local; source changes are versioned on GitHub.
-Pushing commits does not deploy anything. Read [AGENTS.md](AGENTS.md) before changing the project.
+Pushing commits to `main` does not deploy anything. Read [AGENTS.md](AGENTS.md) before changing the project.
+
+## Deployment
+
+Production runs on the VPS at `https://nova-api.atmosferast.com` through the `production` branch, as described in the web repository. The server reads `/opt/nova-api/.env` (not in Git). The scaffold has no health route yet, so the deploy checks that the container answers HTTP on loopback.
+
 
 ## Branches
 
 Use only `main` for development and `production` for production releases.
-No deployment is configured.
