@@ -1,0 +1,19 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Build artifacts
+/bin/
+/dist/
+/api
+/api.exe
+*.test
+coverage.out
+*.log
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
