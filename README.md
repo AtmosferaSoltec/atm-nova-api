@@ -52,5 +52,10 @@ dentistry, psychology, veterinary medicine, and medicine; dentistry comes first.
 
 SSH remote: `git@github.com:AtmosferaSoltec/atm-nova-api.git`.
 
-Work remains local. Configuring this remote does not publish commits or deploy
-anything. Read [AGENTS.md](AGENTS.md) before changing the project.
+Development and execution remain local; source changes are versioned on GitHub.
+Pushing commits does not deploy anything. Read [AGENTS.md](AGENTS.md) before changing the project.
+
+## Branches
+
+Use only `main` for development and `production` for production releases.
+No deployment is configured.

@@ -41,3 +41,11 @@ identity will be shared concerns. Do not implement them in the current scaffold.
 For Go code changes, run `gofmt`, `go vet ./...`, `go test ./...`, and
 `go build -o bin/nova-api ./cmd/api`. Report the checks actually run. A successful
 build or a default 404 proves the scaffold starts, not that business features exist.
+
+## Git workflow
+
+- Use only two branches: `main` and `production`. Do not create feature, develop,
+  release, or other branches.
+- Use `main` for ongoing development and `production` for production releases.
+- Push or promote changes only within the user's requested scope. A push to
+  `main` does not authorize a production release or deployment.
